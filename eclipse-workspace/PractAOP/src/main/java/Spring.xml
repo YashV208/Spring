@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+				http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+				http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<bean name="circle" class="Models.Circle">
+		<property name="name" value="I am a Circle"></property>
+	</bean>
+
+	<bean name="triangle" class="Models.Triangle">
+		<property name="name" value="I am a Circle"></property>
+	</bean>
+	
+	<bean name="shapeServices" class="Service.ShapeService" autowire="byName">
+		
+	</bean>
+	
+<!-- 	<bean name="LoggingAspect" class="Aspects.LoggingAspect"></bean> -->
+	<bean name="LoggingAspectXml" class="Aspects.LoggingAspectXml"></bean>
+	
+	<aop:config>
+	
+		<aop:aspect id="LoggingAspectXml" ref="LoggingAspectXml">
+		<aop:pointcut expression="within(Models.Circle)" id="PointcutFunction"/>
+			<aop:before pointcut-ref="PointcutFunction" method="LoggingAdvice4" />
+		
+		</aop:aspect>
+	</aop:config>
+</beans>
+	
+
+<!-- 	<aop:aspectj-autoproxy/> -->

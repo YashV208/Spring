@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+<!-- 	<bean id="vehicle" class="demo.Car"></bean> -->
+	
+		<context:component-scan base-package="demo"></context:component-scan>
+		<!--Annotation Based dependency Injection of bus and car components -->
+	
+	<beans>
+		<bean id="bus" class="demo.Bus">
+			<property name="brand" value="Swaraj Mazda"></property> 
+<!-- 			Dependency property injection by Setter MEthod -->
+		</bean>
+		<bean id="cycle" class="demo.Cycle">
+			<constructor-arg value="Hercules"></constructor-arg>
+<!-- 			Dependency property injection by argument argument constructor  -->
+		</bean>
+	</beans>
+</beans>
